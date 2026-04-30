@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Environment — NEVER commit real secrets
+.env
+backend/.env
+
+# SQLite database — data lives on the server, not in git
+backend/data/*.db
+backend/data/*.db-shm
+backend/data/*.db-wal
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Claude Code internals
+.claude/

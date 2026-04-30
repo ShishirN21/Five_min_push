@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+
+# Proxy all /api/* calls to the Render backend.
+# Replace YOUR_RENDER_URL with your actual Render service URL once deployed.
+[[redirects]]
+  from   = "/api/*"
+  to     = "https://YOUR_RENDER_URL/api/:splat"
+  status = 200
+  force  = true
+
+# SPA fallback — serves index.html for any unmatched route
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
