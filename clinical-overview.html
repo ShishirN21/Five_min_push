@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Overview — Five Mins Push</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --brand-blue: #006b9c;
+      --brand-green: #81a33a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #111; background: #fff; line-height: 1.5; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    #main-nav {
+      position: sticky; top: 0; z-index: 7000;
+      background: #fff;
+      border-bottom: 1px solid #dce7e5;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 90px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .fmp-logo-inner {
+      position: relative; width: 300px; height: 90px;
+      overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center;
+    }
+    .fmp-logo-inner img {
+      position: absolute; width: 90px; height: 300px;
+      left: 105px; top: -105px;
+      transform: rotate(-90deg); transform-origin: 50% 50%;
+      object-fit: contain;
+    }
+    .nav-center { display: flex; gap: 4px; list-style: none; }
+    .nav-center a {
+      font-size: .88rem; font-weight: 500; color: #444;
+      padding: 7px 12px; border-radius: 6px;
+      transition: color .2s, background .2s;
+    }
+    .nav-center a:hover { color: #111; background: #f5f5f0; }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-cta-btn {
+      background: var(--brand-blue); color: #fff;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: .87rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta-btn:hover { background: #00527a; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #f0f7fb 0%, #e8f4f0 100%);
+      border-bottom: 1px solid #dce7e5;
+      padding: 64px 8% 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .hero-left { flex: 1; }
+    .hero-eyebrow {
+      font-size: .78rem; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--brand-green);
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: 3rem; font-weight: 800; line-height: 1.15;
+      color: #0a1a2e; margin-bottom: 18px;
+    }
+    .hero-title span { color: var(--brand-blue); }
+    .hero-sub {
+      font-size: 1.05rem; color: #444; line-height: 1.7;
+      max-width: 520px; margin-bottom: 28px;
+    }
+    .hero-contact {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 24px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #dce7e5;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      width: fit-content;
+    }
+    .hero-contact-img {
+      width: 90px; height: 90px;
+      border-radius: 50%; background: #e0edf3;
+      border: 3px solid var(--brand-blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .hero-contact-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-contact-text strong { display: block; font-size: 1.05rem; color: #111; font-weight: 700; }
+    .hero-contact-text span { display: block; font-size: .8rem; color: #666; margin-bottom: 4px; }
+    .hero-contact-text a { font-size: .85rem; color: var(--brand-blue); }
+    .hero-right { flex-shrink: 0; }
+    .hero-logo-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.1);
+      border: 1px solid #dce7e5;
+      text-align: center;
+    }
+    .hero-logo-box img { height: 90px; width: auto; margin: 0 auto; }
+    .hero-logo-box .logo-placeholder {
+      height: 90px; width: 200px;
+      background: #eef4f7; border: 2px dashed var(--brand-blue);
+      border-radius: 6px; display: flex; align-items: center;
+      justify-content: center; font-size: .78rem; color: #888; font-style: italic;
+    }
+    .hero-logo-label {
+      font-size: .72rem; color: #888; margin-top: 10px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      background: var(--brand-blue);
+      color: #fff;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 28px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 2rem; font-weight: 800; }
+    .stat-label { font-size: .78rem; opacity: .85; margin-top: 4px; letter-spacing: .4px; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 72px 8%; }
+    .section-alt { background: #f7fafb; }
+    .section-dark { background: #0a1a2e; color: #fff; }
+
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--brand-blue);
+      margin-bottom: 12px;
+    }
+    .section-dark .section-label { color: var(--brand-green); }
+    .section-title {
+      font-size: 2rem; font-weight: 800; line-height: 1.25;
+      color: #0a1a2e; margin-bottom: 16px;
+    }
+    .section-dark .section-title { color: #fff; }
+    .section-body {
+      font-size: .97rem; line-height: 1.8; color: #333; max-width: 720px;
+    }
+    .section-dark .section-body { color: #c5d9e8; }
+
+    /* Two-column split */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .split-reverse { direction: rtl; }
+    .split-reverse > * { direction: ltr; }
+
+    /* Image placeholder */
+    .img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: #e8f0f5;
+      border-radius: 12px;
+      border: 2px dashed #b0ccd8;
+      display: flex; align-items: center; justify-content: center;
+      color: #8aacbc; font-size: .9rem; font-style: italic;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid #dce7e5;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+    .section-dark .card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
+    .card-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #0a1a2e; }
+    .section-dark .card-title { color: #fff; }
+    .card-body { font-size: .875rem; color: #555; line-height: 1.7; }
+    .section-dark .card-body { color: #a8c4d8; }
+
+    /* Benefit highlight */
+    .benefit-highlight {
+      background: linear-gradient(135deg, #e8f7ef, #e0f0fb);
+      border-left: 4px solid var(--brand-green);
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .benefit-highlight p { font-size: .97rem; line-height: 1.8; color: #1a1a1a; }
+
+    /* CTA strip */
+    .cta-strip {
+      background: var(--brand-blue);
+      color: #fff;
+      padding: 56px 8%;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .cta-strip h2 { font-size: 1.7rem; font-weight: 800; max-width: 500px; line-height: 1.3; }
+    .cta-btn {
+      background: #fff; color: var(--brand-blue);
+      padding: 14px 32px; border-radius: 8px;
+      font-size: .95rem; font-weight: 700;
+      white-space: nowrap;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .cta-btn:hover { background: #e8f4fb; }
+
+    /* ── COMPARISON SECTION ── */
+    .comparison-section {
+      padding: 72px 8%;
+      background: #fff;
+    }
+    .comparison-intro {
+      max-width: 820px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+    .comparison-intro p {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: #333;
+      margin-top: 16px;
+    }
+    .comparison-image-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 40px rgba(0,0,0,.12);
+      border: 1px solid #dce7e5;
+      margin: 0 auto 48px;
+      max-width: 560px;
+    }
+    .comparison-image-wrap img { width: 100%; height: auto; display: block; }
+    .comparison-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .compare-card {
+      border-radius: 12px;
+      padding: 28px 28px;
+      border: 2px solid;
+    }
+    .compare-card.push {
+      border-color: var(--brand-blue);
+      background: #f0f7fb;
+    }
+    .compare-card.drip {
+      border-color: #ccc;
+      background: #f9f9f9;
+    }
+    .compare-badge {
+      display: inline-block;
+      font-size: .7rem; font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 20px; margin-bottom: 14px;
+    }
+    .compare-card.push .compare-badge { background: var(--brand-blue); color: #fff; }
+    .compare-card.drip .compare-badge { background: #ccc; color: #555; }
+    .compare-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; color: #0a1a2e; }
+    .compare-card ul { list-style: none; padding: 0; }
+    .compare-card ul li {
+      font-size: .9rem; color: #333; line-height: 1.7;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      display: flex; gap: 8px;
+    }
+    .compare-card ul li:last-child { border-bottom: none; }
+    .compare-card ul li::before { content: '•'; flex-shrink: 0; }
+    .compare-card.push ul li::before { color: var(--brand-blue); }
+    .compare-card.drip ul li::before { color: #aaa; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .hero { flex-direction: column; padding: 48px 6% 40px; }
+      .hero-right { width: 100%; }
+      .hero-logo-box { display: flex; align-items: center; gap: 20px; padding: 20px 24px; }
+      .split { grid-template-columns: 1fr; gap: 32px; }
+      .split-reverse { direction: ltr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .cta-strip { flex-direction: column; text-align: center; }
+      .compare-card { padding: 16px 14px; }
+      .compare-card ul li { font-size: .78rem; }
+      .compare-card h3 { font-size: .9rem; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.15); }
+    }
+    @media (max-width: 640px) {
+      #main-nav { height: 56px; position: relative; }
+      .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+      .fmp-logo-inner { width: 160px; height: 50px; }
+      .fmp-logo-inner img { width: 50px; height: 160px; left: 55px; top: -55px; }
+      .nav-center { display: none; }
+      .nav-cta-btn { display: none; }
+      .hero-title { font-size: 2rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .section { padding: 48px 6%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">
+      <div class="fmp-logo-inner">
+        <img src="fiveminpush-logo.png" alt="Five Minute Push" />
+      </div>
+    </a>
+    <ul class="nav-center">
+      <li><a href="index.html#benefits">Benefits</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="index.html#product">Product</a></li>
+      <li><a href="index.html#market">Market</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="clinical-overview.html" style="color:var(--brand-blue);font-weight:700;">Clinical Overview</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="index.html#contact" class="nav-cta-btn">Partner With Us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">IntegraVita Wellness · Clinical Overview</div>
+      <h1 class="hero-title">The Science Behind<br><span>Five Minute Push</span></h1>
+      <p class="hero-sub">18 FDA-accepted vitamins, minerals and hydration delivered directly into the bloodstream — providing an instant energy boost lasting 6–9 days.</p>
+      <div class="hero-contact">
+        <div class="hero-contact-img">👨‍⚕️</div>
+        <div class="hero-contact-text">
+          <strong>Dr. Bradley Morris</strong>
+          <span>Medical Director, IntegraVita Wellness</span>
+          <a href="mailto:drbmorris@gmail.com">drbmorris@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-logo-box">
+        <img src="integravita-logo.png" alt="IntegraVita Wellness"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="logo-placeholder" style="display:none;">[ IntegraVita Logo ]</div>
+        <div class="hero-logo-label">Presenting Clinic</div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid #eee;">
+          <div class="fmp-logo-inner" style="margin:0 auto;">
+            <img src="fiveminpush-logo.png" alt="Five Minute Push" />
+          </div>
+          <div class="hero-logo-label" style="margin-top:6px;">Featured Product</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">50M+</div>
+      <div class="stat-label">Americans with vitamin deficiency</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">18</div>
+      <div class="stat-label">FDA-accepted vitamins &amp; minerals</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6–9</div>
+      <div class="stat-label">Days of sustained energy boost</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">&lt; 5 min</div>
+      <div class="stat-label">Treatment time</div>
+    </div>
+  </div>
+
+  <!-- THE CHALLENGE -->
+  <section class="section">
+    <div class="split">
+      <div>
+        <div class="section-label">The Challenge</div>
+        <h2 class="section-title">A Declining Immune System Is an Untapped Market</h2>
+        <p class="section-body">Some 50 million Americans today suffer from vitamin deficiency, aging and declining immune systems and declining energy loss as we age or physically overwork ourselves in bioscience and pleasure. The human immune system undergoes many dramatic aging related changes, which continuously progress to a state of declining immune function.</p>
+        <br>
+        <p class="section-body">The aging immune system loses the ability to protect against infections, diseases, cancer and declines normally with age — creating a massive, underserved patient population walking into clinics every day.</p>
+      </div>
+      <div>
+        <img src="standard-patient.png" alt="Patient with declining immune system" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.1);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SOLUTION -->
+  <section class="section section-alt">
+    <div class="split split-reverse">
+      <div>
+        <div class="section-label">The Solution</div>
+        <h2 class="section-title">Five Minute Push: Superior to the Myers Cocktail</h2>
+        <p class="section-body">At IntegraVita Wellness, we're thrilled to offer the FIVE Minute Push Vitamin IV therapy as part of our services — containing 18 FDA-accepted vitamins, minerals and hydration delivered directly into your bloodstream. Far superior to the Myers Cocktail containing only 7 ingredients, this powerful treatment provides an instant energy boost continuing for 7–11 days depending upon the individual.</p>
+      </div>
+      <div>
+        <img src="fivemin-vs-meyers.png" alt="Five Minute Push vs Myers Cocktail" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.1);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section section-dark">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <div class="section-label">Clinical Benefits</div>
+      <h2 class="section-title" style="color:#fff;">What Patients Experience</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Sustained Energy</div>
+        <div class="card-body">Significant increased energy lasting 6–9 days, varies by individual — not a quick spike.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-title">Better Focus</div>
+        <div class="card-body">Improved mental clarity and cognitive performance following treatment.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">😴</div>
+        <div class="card-title">Improved Sleep</div>
+        <div class="card-body">Clients report deeper, more restorative sleep as energy systems recover.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💪</div>
+        <div class="card-title">Faster Recovery</div>
+        <div class="card-body">Day-to-day energy loss is reversed, supporting faster physical recovery.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <div class="card-title">Immune Support</div>
+        <div class="card-body">Direct bloodstream delivery supports immune function and whole-body wellness.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <div class="card-title">5-Minute Treatment</div>
+        <div class="card-body">Converts 45–60 min traditional IV sessions to under 5 minutes — maximizing clinic throughput.</div>
+      </div>
+    </div>
+
+    <div class="benefit-highlight" style="margin-top:48px;">
+      <p><strong>Benefit:</strong> Many of our clients report significant increased energy, lasting 6–9 days (varies by individual) better focus, improved sleep, and faster recovery from day to day loss of energy. Side effects include taste of vitamin B in your mouth upon injection followed by an overall warming through out the entire body — unique indicators that the formula is working. Try FIVE Minute Vitamin Push for yourself. Your health and vitality are worth it.</p>
+    </div>
+  </section>
+
+  <!-- CLINICAL INTEGRATION -->
+  <section class="section">
+    <div class="split">
+      <div>
+        <div class="section-label">Clinical Integration</div>
+        <h2 class="section-title">Root Cause Medicine, Not Just Symptoms</h2>
+        <p class="section-body">Whether you're dealing with low energy, chronic stress or possibly just looking to optimize your overall wellness, FIVE Minute Push is a game changer. We can't keep it on the shelf — converting almost all of our standard 1 hour vitamin drip times to less than 5 minutes.</p>
+        <br>
+        <p class="section-body">In addressing root cause rather than symptoms, practitioners become oriented to identifying the complexity of disease. They may find one condition has many different causes and likewise, one cause may result in many different conditions. As a result, functional medicine treatment targets the specific manifestations in each individual.</p>
+      </div>
+      <div>
+        <img src="patient-image.png" alt="Patient receiving IV treatment" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.1);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENING -->
+  <section class="section section-alt">
+    <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <div class="section-label">Screening &amp; Safety</div>
+      <h2 class="section-title" style="margin-bottom: 20px;">Medical Screening Required</h2>
+      <p class="section-body" style="max-width:100%; text-align:left;">When choosing an IV Clinic, IV Bar or Mobilization RN, you should always undergo some type of medical screening process — you will need to inform the provider of any allergies, medications, supplements, or other current treatments prior to initiating any IV therapy.</p>
+    </div>
+  </section>
+
+  <!-- FIVE MINUTE PUSH OVERVIEW + COMPARISON -->
+  <section class="comparison-section">
+    <div class="comparison-intro">
+      <div class="section-label">Product Overview</div>
+      <h2 class="section-title">Vitamin Five Minute Push℞</h2>
+      <p>FIVE Minute Push offers a transformative experience delivering an energy boost lasting 7–11 days (varies), supports body immunity, improves hydration and elevates your mood — far superior to the "Myers Cocktail" utilizing a patented formulation. This innovative solution saves patients at least 1 hour or more compared to traditional drip solutions. <strong>The value proposition is TIME.</strong></p>
+    </div>
+
+    <!-- Comparison image -->
+    <div class="comparison-image-wrap">
+      <img src="fivevs1hourdrip.png" alt="Five Minute Push vs 1 Hour Drip Comparison" />
+    </div>
+
+    <!-- Side-by-side comparison -->
+    <div class="comparison-cols">
+      <div class="compare-card push">
+        <div class="compare-badge">Five Minute Push</div>
+        <h3>50ml Vial · 18 Lyophilized Multivitamins</h3>
+        <ul>
+          <li>Delivered by a wing-tip needle injected into a port through the skin</li>
+          <li>Less than 5-minute push delivery</li>
+          <li>Formula B · 22–1111</li>
+          <li>Instant bloodstream absorption — no drip bag needed</li>
+          <li>Saves patient 1+ hour per visit</li>
+          <li>Energy boost lasting 7–11 days</li>
+        </ul>
+      </div>
+      <div class="compare-card drip">
+        <div class="compare-badge">1 Hour IV Drip</div>
+        <h3>Same Solution — Traditional Administration</h3>
+        <ul>
+          <li>Same solution added to an IV bag, subsequently shaking to mix</li>
+          <li>Extracted with a 35ml syringe</li>
+          <li>Requires 45–60 minutes of patient chair time</li>
+          <li>Higher clinic overhead and reduced throughput</li>
+          <li>Same clinical ingredients — slower delivery</li>
+          <li>7 ingredients (Myers Cocktail standard)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <h2>Ready to add Five Minute Push to your clinic's menu?</h2>
+    <a href="index.html#contact" class="cta-btn">Partner With Us</a>
+  </div>
+
+</body>
+</html>

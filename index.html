@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>five min push — Energy & Immunity in Minutes</title>
   <style>
@@ -76,7 +78,7 @@
       background: #fff;
       border-bottom: 1px solid #dce7e5;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 64px;
+      padding: 0 5%; height: 90px;
       transition: box-shadow .3s;
     }
     #main-nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,.08); }
@@ -86,6 +88,27 @@
       height: 48px; width: auto; max-width: 72px;
       object-fit: contain; object-position: left center;
       display: block;
+    }
+
+    /* Five Minute Push rotated logo */
+    .fmp-logo-inner {
+      position: relative;
+      width: 300px;
+      height: 90px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .fmp-logo-inner img {
+      position: absolute;
+      width: 90px;
+      height: 300px;
+      left: 105px;
+      top: -105px;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      object-fit: contain;
     }
 
     .nav-center { display: flex; gap: 4px; list-style: none; }
@@ -715,8 +738,11 @@
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       body { padding-bottom: 76px; }
-      #main-nav { height: 56px; padding: 0 4%; }
-      .nav-logo .site-logo { height: 40px; max-width: 56px; }
+      #main-nav { height: 56px; padding: 0 4%; position: relative; }
+      .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+      .fmp-logo-inner { width: 160px; height: 50px; }
+      .fmp-logo-inner img { width: 50px; height: 160px; left: 55px; top: -55px; }
+      .nav-logo .nav-brand-full { height: 30px; max-width: 58vw; }
       .nav-center, .nav-right .nav-login { display: none !important; }
       .nav-right .nav-cta-btn { display: none !important; }
       .hamburger { display: flex; }
@@ -807,7 +833,9 @@
   <!-- NAV -->
   <nav id="main-nav">
     <a href="#hero" class="nav-logo">
-      <img src="fiveminpush-logo.png" alt="five min push" class="site-logo" width="72" height="48" />
+      <div class="fmp-logo-inner">
+        <img src="fiveminpush-logo.png" alt="Five Minute Push" class="fmp-nav-logo" />
+      </div>
     </a>
     <ul class="nav-center">
       <li><a href="#benefits">Benefits</a></li>
@@ -815,6 +843,7 @@
       <li><a href="#product">Product</a></li>
       <li><a href="#market">Market</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="clinical-overview.html">Clinical Overview</a></li>
     </ul>
     <div class="nav-right">
       <a href="#videos" class="nav-login">Watch Videos</a>
@@ -830,7 +859,9 @@
     <div class="drawer-backdrop" id="drawer-backdrop"></div>
     <div class="drawer-panel">
       <div class="drawer-logo">
-        <img src="fiveminpush-logo.png" alt="five min push" class="site-logo" width="72" height="48" />
+        <div class="fmp-logo-inner">
+          <img src="fiveminpush-logo.png" alt="Five Minute Push" class="fmp-nav-logo" />
+        </div>
       </div>
       <ul class="drawer-links">
         <li><a href="#benefits"     class="drawer-link">Benefits</a></li>
@@ -1305,6 +1336,27 @@
   <!-- ═══════════════════════════════════
        FAQ — exactly like The Sprouting Company
   ═══════════════════════════════════ -->
+  <!-- CLINICAL OVERVIEW REFERENCE -->
+  <section style="background:linear-gradient(135deg,#f0f7fb 0%,#e8f4f0 100%);padding:64px 8%;border-top:1px solid #dce7e5;border-bottom:1px solid #dce7e5;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#81a33a;margin-bottom:10px;">For Practitioners</div>
+        <h2 style="font-size:1.9rem;font-weight:800;color:#0a1a2e;line-height:1.25;margin-bottom:14px;">Read the Full Clinical Overview</h2>
+        <p style="font-size:.97rem;color:#444;line-height:1.75;max-width:480px;margin-bottom:24px;">Detailed clinical data, product comparisons, screening protocols, and the science behind Five Minute Push — everything your medical team needs to evaluate and integrate the formula.</p>
+        <a href="clinical-overview.html" style="display:inline-flex;align-items:center;gap:8px;background:#006b9c;color:#fff;padding:13px 26px;border-radius:8px;font-size:.92rem;font-weight:700;text-decoration:none;transition:background .2s;">View Clinical Overview →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;flex-shrink:0;">
+        <img src="integravita-logo.png" alt="IntegraVita Wellness" style="height:70px;width:auto;" />
+        <div style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:1px;">Presented by IntegraVita Wellness</div>
+        <div style="font-size:.85rem;color:#444;text-align:center;line-height:1.6;">
+          <strong style="display:block;color:#111;">Dr. Bradley Morris</strong>
+          Medical Director<br>
+          <a href="mailto:drbmorris@gmail.com" style="color:#006b9c;">drbmorris@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="faq-inner">
       <div class="reveal" style="text-align:center;margin-bottom:48px">
@@ -1429,7 +1481,9 @@
   <footer>
     <div class="footer-top">
       <div class="footer-logo">
-        <img src="fiveminpush-logo.png" alt="five min push" class="site-logo" width="64" height="44" />
+        <div class="fmp-logo-inner">
+          <img src="fiveminpush-logo.png" alt="Five Minute Push" class="fmp-nav-logo" />
+        </div>
       </div>
       <ul class="footer-links">
         <li><a href="#benefits">Benefits</a></li>
@@ -1680,5 +1734,6 @@
       showStep(1);
     })();
   </script>
+
 </body>
 </html>
