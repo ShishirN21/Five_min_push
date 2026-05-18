@@ -1,6 +1,8 @@
 'use strict';
 require('dotenv').config();
+const path       = require('path');
 const express    = require('express');
+const siteRoot   = path.resolve(__dirname, '../..');
 const helmet     = require('helmet');
 const cors       = require('cors');
 const morgan     = require('morgan');
@@ -56,6 +58,11 @@ app.use('/api/contact', contactRoutes);
 
 /* ── Health check ────────────────────────────────────────────────*/
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
+
+/* ── Static site (project root) ──────────────────────────────────*/
+if (process.env.NODE_ENV !== 'test') {
+  app.use(express.static(siteRoot));
+}
 
 /* ── 404 ─────────────────────────────────────────────────────────*/
 app.use((_req, res) => res.status(404).json({ error: 'Not found' }));
