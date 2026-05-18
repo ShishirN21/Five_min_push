@@ -894,6 +894,20 @@
        COMPARISON HERO
   ═══════════════════════════════════ -->
   <style>
+    /* ── RESET OLD HERO STYLES ── */
+    #hero {
+      position: static !important;
+      min-height: unset !important;
+      display: block !important;
+      align-items: unset !important;
+      justify-content: unset !important;
+      text-align: unset !important;
+      background: #0d1b2e !important;
+      overflow: visible !important;
+      padding: 0 !important;
+    }
+    #hero::before { display: none !important; }
+
     /* ── PULSE BANNER ── */
     @keyframes pulse-glow {
       0%,100% { box-shadow: 0 0 18px rgba(192,21,42,.8), 0 0 40px rgba(192,21,42,.4); }
@@ -921,12 +935,11 @@
     }
 
     /* ── COMPARISON HERO WRAPPER ── */
-    #hero { padding: 0; background: #0d1b2e; }
-
     .ch-grid {
       display: grid;
       grid-template-columns: 1fr 64px 1fr;
       background: #f2f2f4;
+      width: 100%;
     }
 
     /* LEFT — Five Minute Push */
@@ -1088,6 +1101,12 @@
     <!-- PULSING RED BANNER -->
     <div class="pulse-banner">
       <h2>Shorter Visits. &nbsp;More Clients.</h2>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div style="width:100%;line-height:0;overflow:hidden;max-height:420px;">
+      <img src="syringe-vs-drip.png" alt="Five Minute Push syringe beats Myers Cocktail drip"
+           style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
     </div>
 
     <!-- COMPARISON GRID -->
