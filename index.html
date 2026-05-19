@@ -956,7 +956,7 @@
     .syringe-strip {
       width: 100%;
       line-height: 0;
-      background: #b8d4ea;
+      background: linear-gradient(160deg, #7ab2e8 0%, #598dcd 55%, #3d6fb8 100%);
     }
     .syringe-strip img {
       width: 100%;
@@ -964,26 +964,14 @@
       display: block;
     }
 
-    /* Desktop: image + table = one full viewport */
+    /* Desktop: image capped so table always fits in one view */
     @media (min-width: 641px) {
-      .compare-page {
-        height: 100svh;
-        height: 100vh;
-        overflow: hidden;
-      }
-      .syringe-strip {
-        flex: 1;
-        min-height: 0;
-        overflow: hidden;
-      }
       .syringe-strip img {
+        max-height: 55vh;
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: contain;
         object-position: center center;
-      }
-      .cmp-wrap {
-        flex-shrink: 0;
       }
     }
 
@@ -1092,43 +1080,43 @@
       filter: brightness(1.08);
     }
     .cmp-cell {
-      padding: 16px 20px;
-      font-size: .92rem;
+      padding: 11px 20px;
+      font-size: .88rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      line-height: 1.4;
+      line-height: 1.35;
     }
     /* Header */
     .cmp-head .cmp-fmp-head {
       background: #1a3a1a;
       color: #81a33a;
-      font-size: .75rem;
+      font-size: .72rem;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 11px 20px;
     }
     .cmp-head .cmp-cat-head {
       background: #111d2e;
       color: rgba(255,255,255,.4);
-      font-size: .65rem;
+      font-size: .62rem;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       justify-content: center;
-      padding: 14px 10px;
+      padding: 11px 10px;
     }
     .cmp-head .cmp-myers-head {
       background: #2a1a1a;
       color: #c0152a;
-      font-size: .75rem;
+      font-size: .72rem;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 11px 20px;
     }
     /* Data cells — FMP (left, green) */
     .cmp-fmp {
@@ -1179,10 +1167,10 @@
     /* ── TABLE MOBILE ── */
     @media (max-width: 600px) {
       .cmp-row  { grid-template-columns: 1fr 70px 1fr; }
-      .cmp-cell { padding: 13px 12px; font-size: .78rem; gap: 6px; }
+      .cmp-cell { padding: 9px 10px; font-size: .74rem; gap: 5px; }
       .cmp-head .cmp-fmp-head,
-      .cmp-head .cmp-myers-head { font-size: .6rem; letter-spacing: 1px; padding: 12px 8px; }
-      .cmp-cat  { font-size: .55rem; letter-spacing: 1px; padding: 13px 6px; }
+      .cmp-head .cmp-myers-head { font-size: .58rem; letter-spacing: 1px; padding: 9px 8px; }
+      .cmp-cat  { font-size: .52rem; letter-spacing: 1px; padding: 9px 6px; }
     }
 
     /* Mobile */
