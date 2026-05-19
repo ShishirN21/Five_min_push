@@ -31,6 +31,7 @@
       position: relative; width: 300px; height: 64px;
       overflow: hidden; flex-shrink: 0;
       display: flex; align-items: center;
+      -webkit-transform: translateZ(0); transform: translateZ(0);
     }
     .fmp-logo-inner img {
       position: absolute; width: 64px; height: 300px;
@@ -309,8 +310,8 @@
     @media (max-width: 640px) {
       #main-nav { height: 56px; position: relative; }
       .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); top: 50%; margin-top: -25px; }
-      .fmp-logo-inner { width: 160px; height: 50px; overflow: hidden; position: relative; }
-      .fmp-logo-inner img { position: absolute; width: 50px; height: 160px; left: 55px; top: -55px; transform: rotate(-90deg); transform-origin: 50% 50%; }
+      .fmp-logo-inner { width: 160px; height: 50px; overflow: hidden; position: relative; -webkit-transform: translateZ(0); transform: translateZ(0); }
+      .fmp-logo-inner img { position: absolute; width: 50px; height: 160px; left: 55px; top: -55px; -webkit-transform: rotate(-90deg); transform: rotate(-90deg); transform-origin: 50% 50%; }
       .nav-center { display: none; }
       .nav-cta-btn { display: none; }
       .hero-title { font-size: 2rem; }
@@ -365,9 +366,9 @@
         <div class="logo-placeholder" style="display:none;">[ IntegraVita Logo ]</div>
         <div class="hero-logo-label">Presenting Clinic</div>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid #eee;text-align:center;">
-          <div style="width:160px;height:40px;overflow:hidden;position:relative;margin:0 auto;">
+          <div style="width:160px;height:40px;overflow:hidden;position:relative;margin:0 auto;-webkit-transform:translateZ(0);transform:translateZ(0);">
             <img src="fiveminpush-logo.png" alt="Five Minute Push"
-                 style="position:absolute;width:40px;height:160px;left:60px;top:-60px;transform:rotate(-90deg);transform-origin:50% 50%;object-fit:contain;" />
+                 style="position:absolute;width:40px;height:160px;left:60px;top:-60px;-webkit-transform:rotate(-90deg);transform:rotate(-90deg);transform-origin:50% 50%;object-fit:contain;" />
           </div>
           <div class="hero-logo-label" style="margin-top:6px;">Featured Product</div>
         </div>
