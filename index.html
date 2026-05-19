@@ -946,26 +946,21 @@
        DR. MORRIS + SYRINGE IMAGE SECTION
   ═══════════════════════════════════ -->
   <style>
-    /* ── COMPARE PAGE (syringe + table = 1 viewport) ── */
+    /* ── COMPARE PAGE ── */
     .compare-page {
-      height: 100svh; height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
 
     /* ── SYRINGE IMAGE STRIP ── */
     .syringe-strip {
-      flex: 1;
-      min-height: 0;
+      width: 100%;
       line-height: 0;
-      overflow: hidden;
+      background: #0d1b2e;
     }
     .syringe-strip img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
       display: block;
     }
 
