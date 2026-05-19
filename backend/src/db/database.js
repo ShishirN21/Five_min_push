@@ -97,13 +97,17 @@ const ready = (async () => {
 
     CREATE TABLE IF NOT EXISTS contact_submissions (
       id         TEXT PRIMARY KEY,
-      name       TEXT NOT NULL,
+      first_name TEXT NOT NULL DEFAULT '',
+      last_name  TEXT NOT NULL DEFAULT '',
       email      TEXT NOT NULL,
-      clinic     TEXT,
-      message    TEXT NOT NULL,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
+
+  /* ── Migrate existing DB: add first_name/last_name if missing ── */
+  const cols = _db.prepare(`PRAGMA table_info(contact_submissions)`).all().map(r => r.name);
+  if (!cols.includes('first_name')) _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN first_name TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('last_name'))  _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN last_name  TEXT NOT NULL DEFAULT ''`).run();
 
   return _db;
 })();

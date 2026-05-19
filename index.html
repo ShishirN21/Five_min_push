@@ -1817,11 +1817,17 @@
         </div>
 
         <div class="cf-step" data-step="4" hidden>
-          <h3 class="cf-q-title">Where could a 5-minute IV push fit in your practice?</h3>
-          <p class="cf-q-hint">Rough client volume, locations, or what’s stopping you from offering faster IV visits today — that’s what we need to see real partnership fit.</p>
-          <div class="form-group" style="margin-bottom:16px">
-            <label for="cf-interest">Your answer</label>
-            <textarea id="cf-interest" placeholder="e.g. We run 2 locations, could add IV visits if throughput doubled; main bottleneck is chair time and staffing…" required minlength="20"></textarea>
+          <h3 class="cf-q-title">Last step — how do we reach you?</h3>
+          <p class="cf-q-hint">We’ll follow up within 1–2 business days.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <div class="form-group" style="margin-bottom:0">
+              <label for="cf-first-name">First name</label>
+              <input id="cf-first-name" type="text" placeholder="Jane" required autocomplete="given-name" />
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="cf-last-name">Last name</label>
+              <input id="cf-last-name" type="text" placeholder="Smith" required autocomplete="family-name" />
+            </div>
           </div>
           <div class="form-group" style="margin-bottom:0">
             <label for="cf-email">Work email</label>
@@ -2020,20 +2026,13 @@
           }
         }
         if (n === 4) {
-          const emailEl = document.getElementById('cf-email');
-          const interestEl = document.getElementById('cf-interest');
-          const email = emailEl ? emailEl.value.trim() : '';
-          const interest = interestEl ? interestEl.value.trim() : '';
-          const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-          if (!emailOk) {
-            fb.className = 'cf-feedback error';
-            fb.textContent = 'Enter a valid work email.';
-            return false;
-          }
-          if (interest.length < 20) {
-            fb.className = 'cf-feedback error';
-            fb.textContent = 'Add a bit more detail so we can assess partnership fit.';
-            return false;
+          const firstName = (document.getElementById('cf-first-name')?.value || '').trim();
+          const lastName  = (document.getElementById('cf-last-name')?.value  || '').trim();
+          const email     = (document.getElementById('cf-email')?.value       || '').trim();
+          if (!firstName) { fb.className = 'cf-feedback error'; fb.textContent = 'Enter your first name.'; return false; }
+          if (!lastName)  { fb.className = 'cf-feedback error'; fb.textContent = 'Enter your last name.';  return false; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            fb.className = 'cf-feedback error'; fb.textContent = 'Enter a valid work email.'; return false;
           }
         }
         return true;
@@ -2052,21 +2051,9 @@
         if (step !== 4) return;
         if (!validateStep(4)) return;
 
-        const email = document.getElementById('cf-email').value.trim();
-        const interest = document.getElementById('cf-interest').value.trim();
-        const q1 = selectedRadio('cf-q1'), q2 = selectedRadio('cf-q2'), q3 = selectedRadio('cf-q3');
-        const local = email.split('@')[0];
-        let name = local.replace(/[._-]+/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase()).trim() || 'Clinic contact';
-        if (name.length > 100) name = name.slice(0, 100);
-
-        const message = [
-          'Warm-up Q1 (spirit animal): ' + q1,
-          'Warm-up Q2 (playlist): ' + q2,
-          'Warm-up Q3 (snack drawer): ' + q3,
-          '',
-          'Partnership fit / throughput / barriers:',
-          interest
-        ].join('\n');
+        const firstName = document.getElementById('cf-first-name').value.trim();
+        const lastName  = document.getElementById('cf-last-name').value.trim();
+        const email     = document.getElementById('cf-email').value.trim();
 
         sub.disabled = true;
         nextBtn.disabled = true;
@@ -2078,7 +2065,7 @@
           const res = await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, message })
+            body: JSON.stringify({ firstName, lastName, email })
           });
           if (res.ok) {
             fb.className = 'cf-feedback success';
