@@ -23,18 +23,18 @@
       background: #fff;
       border-bottom: 1px solid #dce7e5;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 90px;
+      padding: 0 5%; height: 64px;
       box-shadow: 0 2px 12px rgba(0,0,0,.06);
     }
     .nav-logo { display: flex; align-items: center; }
     .fmp-logo-inner {
-      position: relative; width: 300px; height: 90px;
+      position: relative; width: 300px; height: 64px;
       overflow: hidden; flex-shrink: 0;
       display: flex; align-items: center;
     }
     .fmp-logo-inner img {
-      position: absolute; width: 90px; height: 300px;
-      left: 105px; top: -105px;
+      position: absolute; width: 64px; height: 300px;
+      left: 118px; top: -118px;
       transform: rotate(-90deg); transform-origin: 50% 50%;
       object-fit: contain;
     }
@@ -308,8 +308,8 @@
     }
     @media (max-width: 640px) {
       #main-nav { height: 56px; position: relative; }
-      .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
-      .fmp-logo-inner { width: 160px; height: 50px; }
+      .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); top: 50%; margin-top: -25px; }
+      .fmp-logo-inner { width: 160px; height: 50px; overflow: hidden; }
       .fmp-logo-inner img { width: 50px; height: 160px; left: 55px; top: -55px; }
       .nav-center { display: none; }
       .nav-cta-btn { display: none; }
@@ -348,7 +348,7 @@
       <h1 class="hero-title">The Science Behind<br><span>Five Minute Push</span></h1>
       <p class="hero-sub">18 FDA-accepted vitamins, minerals and hydration delivered directly into the bloodstream — providing an instant energy boost lasting 6–9 days.</p>
       <div class="hero-contact">
-        <div class="hero-contact-img">👨‍⚕️</div>
+        <div class="hero-contact-img"><img src="Dr.BradMorris.png" alt="Dr. Bradley Morris" /></div>
         <div class="hero-contact-text">
           <strong>Dr. Bradley Morris</strong>
           <span>Medical Director, IntegraVita Wellness</span>
@@ -363,8 +363,9 @@
         <div class="logo-placeholder" style="display:none;">[ IntegraVita Logo ]</div>
         <div class="hero-logo-label">Presenting Clinic</div>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid #eee;">
-          <div class="fmp-logo-inner" style="margin:0 auto;">
-            <img src="fiveminpush-logo.png" alt="Five Minute Push" />
+          <div style="width:160px;height:64px;overflow:hidden;position:relative;margin:0 auto;">
+            <img src="fiveminpush-logo.png" alt="Five Minute Push"
+                 style="position:absolute;width:64px;height:160px;left:48px;top:-48px;transform:rotate(-90deg);transform-origin:50% 50%;object-fit:contain;" />
           </div>
           <div class="hero-logo-label" style="margin-top:6px;">Featured Product</div>
         </div>

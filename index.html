@@ -1005,15 +1005,25 @@
       display: block;
     }
 
-    /* Desktop: image capped so table always fits in one view */
+    /* Desktop: image capped, table rows stretch to fill remaining space */
     @media (min-width: 641px) {
       .syringe-strip img {
-        max-height: 55vh;
+        max-height: 52vh;
         width: 100%;
         height: auto;
         object-fit: contain;
         object-position: center center;
       }
+      .cmp-wrap {
+        display: flex;
+        flex-direction: column;
+      }
+      .cmp-table {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .cmp-row { flex: 1; min-height: 40px; }
     }
 
     /* ── DR. BRADLEY MORRIS ── */
