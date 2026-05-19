@@ -956,7 +956,7 @@
     .syringe-strip {
       width: 100%;
       line-height: 0;
-      background: #0d1b2e;
+      background: #b8d4ea;
     }
     .syringe-strip img {
       width: 100%;
@@ -1073,7 +1073,7 @@
 
     /* ── COMPARISON TABLE ── */
     .cmp-wrap {
-      background: #b8d4ea;
+      background: #0d1b2e;
       padding: 0;
       width: 100%;
     }
@@ -1084,12 +1084,12 @@
     .cmp-row {
       display: grid;
       grid-template-columns: 1fr 140px 1fr;
-      transition: filter .15s;
+      transition: background .15s;
     }
     .cmp-row:not(.cmp-head):hover .cmp-fmp,
     .cmp-row:not(.cmp-head):hover .cmp-myers,
     .cmp-row:not(.cmp-head):hover .cmp-cat {
-      filter: brightness(1.06);
+      filter: brightness(1.08);
     }
     .cmp-cell {
       padding: 16px 20px;
@@ -1101,8 +1101,8 @@
     }
     /* Header */
     .cmp-head .cmp-fmp-head {
-      background: rgba(30, 90, 40, 0.82);
-      color: #c8f0a0;
+      background: #1a3a1a;
+      color: #81a33a;
       font-size: .75rem;
       font-weight: 800;
       letter-spacing: 2px;
@@ -1111,8 +1111,8 @@
       padding: 14px 20px;
     }
     .cmp-head .cmp-cat-head {
-      background: rgba(20, 60, 110, 0.55);
-      color: rgba(255,255,255,.85);
+      background: #111d2e;
+      color: rgba(255,255,255,.4);
       font-size: .65rem;
       font-weight: 700;
       letter-spacing: 2px;
@@ -1121,8 +1121,8 @@
       padding: 14px 10px;
     }
     .cmp-head .cmp-myers-head {
-      background: rgba(140, 15, 30, 0.82);
-      color: #ffc8c8;
+      background: #2a1a1a;
+      color: #c0152a;
       font-size: .75rem;
       font-weight: 800;
       letter-spacing: 2px;
@@ -1130,31 +1130,31 @@
       justify-content: center;
       padding: 14px 20px;
     }
-    /* Data cells — FMP (left, green tint) */
+    /* Data cells — FMP (left, green) */
     .cmp-fmp {
-      background: rgba(30, 100, 40, 0.12);
-      color: #0d2a10;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(30, 100, 40, 0.15);
+      background: #0f2b0f;
+      color: #d4edba;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(129,163,58,.12);
     }
-    /* Data cells — category (center, blue tint) */
+    /* Data cells — category (center) */
     .cmp-cat {
-      background: rgba(20, 60, 110, 0.18);
-      color: rgba(10, 40, 80, 0.75);
+      background: #111d2e;
+      color: rgba(255,255,255,.45);
       font-size: .65rem;
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       justify-content: center;
       text-align: center;
-      border-bottom: 1px solid rgba(20, 60, 110, 0.12);
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
-    /* Data cells — Myers (right, red tint) */
+    /* Data cells — Myers (right, red) */
     .cmp-myers {
-      background: rgba(140, 15, 30, 0.10);
-      color: #2a0810;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(140, 15, 30, 0.12);
+      background: #1f0d0d;
+      color: #e8b4b4;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(192,21,42,.1);
     }
     /* remove last row border */
     .cmp-row:last-child .cmp-fmp,
@@ -1164,13 +1164,13 @@
     }
     /* check / cross icons */
     .cmp-check {
-      color: #2a7a20;
+      color: #81a33a;
       font-size: 1rem;
       font-weight: 900;
       flex-shrink: 0;
     }
     .cmp-cross {
-      color: #b01025;
+      color: #c0152a;
       font-size: 1rem;
       font-weight: 900;
       flex-shrink: 0;
