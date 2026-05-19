@@ -1038,15 +1038,12 @@
     /* ── COMPARISON TABLE ── */
     .cmp-wrap {
       background: #0d1b2e;
-      padding: 0 5% 48px;
+      padding: 0;
       width: 100%;
     }
     .cmp-table {
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 14px;
+      width: 100%;
       overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,.4);
     }
     .cmp-row {
       display: grid;
@@ -1145,7 +1142,6 @@
 
     /* ── TABLE MOBILE ── */
     @media (max-width: 600px) {
-      .cmp-wrap { padding: 0 4% 36px; }
       .cmp-row  { grid-template-columns: 1fr 70px 1fr; }
       .cmp-cell { padding: 13px 12px; font-size: .78rem; gap: 6px; }
       .cmp-head .cmp-fmp-head,
