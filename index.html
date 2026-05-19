@@ -783,8 +783,8 @@
       body { padding-bottom: 76px; }
       #main-nav { height: 56px; padding: 0 4%; position: relative; }
       .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
-      .fmp-logo-inner { width: 160px; height: 50px; }
-      .fmp-logo-inner img { width: 50px; height: 160px; left: 55px; top: -55px; }
+      .fmp-logo-inner { width: 160px; height: 50px; overflow: hidden; position: relative; }
+      .fmp-logo-inner img { position: absolute; width: 50px; height: 160px; left: 55px; top: -55px; transform: rotate(-90deg); transform-origin: 50% 50%; }
       .nav-logo .nav-brand-full { height: 30px; max-width: 58vw; }
       .nav-center, .nav-right .nav-login { display: none !important; }
       .nav-right .nav-cta-btn { display: none !important; }
