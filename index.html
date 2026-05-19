@@ -934,6 +934,145 @@
   </section>
 
   <!-- ═══════════════════════════════════
+       DR. MORRIS + SYRINGE IMAGE SECTION
+  ═══════════════════════════════════ -->
+  <style>
+    /* ── SYRINGE IMAGE STRIP ── */
+    .syringe-strip {
+      width: 100%;
+      line-height: 0;
+      background: #0d1b2e;
+    }
+    .syringe-strip img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ── DR. BRADLEY MORRIS ── */
+    .dr-section {
+      background: #0d1b2e;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 56px 8%;
+      width: 100%;
+    }
+    .dr-photo {
+      flex-shrink: 0;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #81a33a;
+      background: #1a2d44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      line-height: 1;
+    }
+    .dr-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 50%;
+    }
+    .dr-info { flex: 1; color: #fff; }
+    .dr-eyebrow {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #81a33a; margin-bottom: 8px;
+    }
+    .dr-name {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900; color: #fff;
+      letter-spacing: -.5px; margin-bottom: 16px;
+    }
+    .dr-bio {
+      font-size: 1rem; color: rgba(255,255,255,.75);
+      line-height: 1.7; max-width: 640px; margin-bottom: 24px;
+    }
+    .dr-contact {
+      display: flex; flex-wrap: wrap;
+      gap: 14px; margin-bottom: 24px;
+    }
+    .dr-email, .dr-clinical {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .88rem; font-weight: 600;
+      padding: 9px 20px; border-radius: 50px;
+      transition: all .2s;
+    }
+    .dr-email {
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.85);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .dr-email:hover { background: rgba(255,255,255,.14); color: #fff; }
+    .dr-clinical { background: #81a33a; color: #fff; }
+    .dr-clinical:hover { background: #6a8a2d; }
+    .dr-logos {
+      display: flex; align-items: center;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .dr-logos img { opacity: .9; transition: opacity .2s; }
+    .dr-logos img:hover { opacity: 1; }
+
+    /* ── DR SECTION CTA ── */
+    .dr-cta {
+      background: #0d1b2e;
+      text-align: center;
+      padding: 24px 20px 48px;
+    }
+    .dr-cta a {
+      display: inline-block;
+      background: #c0152a; color: #fff;
+      padding: 13px 36px; border-radius: 8px;
+      font-size: 1rem; font-weight: 800;
+      letter-spacing: .04em; text-transform: uppercase;
+      transition: background .2s;
+    }
+    .dr-cta a:hover { background: #a01020; }
+    .dr-cta p { color: #7a9ab5; font-size: .82rem; margin-top: 10px; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .dr-section {
+        flex-direction: column; align-items: center;
+        text-align: center; padding: 40px 6%; gap: 24px;
+      }
+      .dr-photo { width: 120px; height: 120px; font-size: 3.5rem; }
+      .dr-contact { justify-content: center; }
+      .dr-logos { justify-content: center; }
+    }
+  </style>
+
+  <div class="syringe-strip">
+    <img src="syringe-vs-drip.png" alt="Five Minute Push beats Myers Cocktail" />
+  </div>
+
+  <div class="dr-section">
+    <div class="dr-photo">👨‍⚕️</div>
+    <div class="dr-info">
+      <div class="dr-eyebrow">Medical Director &amp; Clinical Lead</div>
+      <h2 class="dr-name">Dr. Bradley Morris</h2>
+      <p class="dr-bio">With decades of clinical experience in IV therapy and integrative medicine, Dr. Morris developed the Five Minute Push formula to deliver maximum nutrient absorption in minimum time — transforming how clinics serve patients without sacrificing outcomes.</p>
+      <div class="dr-contact">
+        <a href="mailto:drbmorris@gmail.com" class="dr-email">✉ drbmorris@gmail.com</a>
+        <a href="clinical-overview.html" class="dr-clinical">Read Clinical Overview →</a>
+      </div>
+      <div class="dr-logos">
+        <img src="integravita-logo.png" alt="IntegraVita Wellness" style="height:48px;width:auto;" />
+      </div>
+    </div>
+  </div>
+
+  <div class="dr-cta">
+    <a href="#contact">Sign Up — Add Five Minute Push to Your Clinic</a>
+    <p>Takes less than 2 minutes · No commitment required</p>
+  </div>
+
+  <!-- ═══════════════════════════════════
        TRUST BAR — 4 icons
   ═══════════════════════════════════ -->
   <div id="trust-bar">
