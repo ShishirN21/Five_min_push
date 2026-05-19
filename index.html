@@ -1035,6 +1035,124 @@
     .dr-cta a:hover { background: #a01020; }
     .dr-cta p { color: #7a9ab5; font-size: .82rem; margin-top: 10px; }
 
+    /* ── COMPARISON TABLE ── */
+    .cmp-wrap {
+      background: #0d1b2e;
+      padding: 0 5% 48px;
+      width: 100%;
+    }
+    .cmp-table {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+    }
+    .cmp-row {
+      display: grid;
+      grid-template-columns: 1fr 140px 1fr;
+      transition: background .15s;
+    }
+    .cmp-row:not(.cmp-head):hover .cmp-fmp,
+    .cmp-row:not(.cmp-head):hover .cmp-myers,
+    .cmp-row:not(.cmp-head):hover .cmp-cat {
+      filter: brightness(1.08);
+    }
+    .cmp-cell {
+      padding: 16px 20px;
+      font-size: .92rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    /* Header */
+    .cmp-head .cmp-fmp-head {
+      background: #1a3a1a;
+      color: #81a33a;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      justify-content: center;
+      padding: 14px 20px;
+    }
+    .cmp-head .cmp-cat-head {
+      background: #111d2e;
+      color: rgba(255,255,255,.4);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      justify-content: center;
+      padding: 14px 10px;
+    }
+    .cmp-head .cmp-myers-head {
+      background: #2a1a1a;
+      color: #c0152a;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      justify-content: center;
+      padding: 14px 20px;
+    }
+    /* Data cells — FMP (left, green) */
+    .cmp-fmp {
+      background: #0f2b0f;
+      color: #d4edba;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(129,163,58,.12);
+    }
+    /* Data cells — category (center) */
+    .cmp-cat {
+      background: #111d2e;
+      color: rgba(255,255,255,.45);
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    /* Data cells — Myers (right, red) */
+    .cmp-myers {
+      background: #1f0d0d;
+      color: #e8b4b4;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(192,21,42,.1);
+    }
+    /* remove last row border */
+    .cmp-row:last-child .cmp-fmp,
+    .cmp-row:last-child .cmp-cat,
+    .cmp-row:last-child .cmp-myers {
+      border-bottom: none;
+    }
+    /* check / cross icons */
+    .cmp-check {
+      color: #81a33a;
+      font-size: 1rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .cmp-cross {
+      color: #c0152a;
+      font-size: 1rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* ── TABLE MOBILE ── */
+    @media (max-width: 600px) {
+      .cmp-wrap { padding: 0 4% 36px; }
+      .cmp-row  { grid-template-columns: 1fr 70px 1fr; }
+      .cmp-cell { padding: 13px 12px; font-size: .78rem; gap: 6px; }
+      .cmp-head .cmp-fmp-head,
+      .cmp-head .cmp-myers-head { font-size: .6rem; letter-spacing: 1px; padding: 12px 8px; }
+      .cmp-cat  { font-size: .55rem; letter-spacing: 1px; padding: 13px 6px; }
+    }
+
     /* Mobile */
     @media (max-width: 640px) {
       .dr-section {
@@ -1049,6 +1167,47 @@
 
   <div class="syringe-strip">
     <img src="syringe-vs-drip.png" alt="Five Minute Push beats Myers Cocktail" />
+  </div>
+
+  <!-- ── COMPARISON TABLE ── -->
+  <div class="cmp-wrap">
+    <div class="cmp-table" role="table" aria-label="Five Minute Push vs Myers Cocktail">
+
+      <!-- Header row -->
+      <div class="cmp-row cmp-head" role="row">
+        <div class="cmp-cell cmp-fmp-head" role="columnheader">Five Minute Push</div>
+        <div class="cmp-cell cmp-cat-head" role="columnheader">Category</div>
+        <div class="cmp-cell cmp-myers-head" role="columnheader">Myers Cocktail</div>
+      </div>
+
+      <!-- Data rows -->
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-fmp" role="cell"><span class="cmp-check">✓</span> 18 FDA GRAS Vitamins &amp; Minerals</div>
+        <div class="cmp-cell cmp-cat" role="cell">INGREDIENTS</div>
+        <div class="cmp-cell cmp-myers" role="cell"><span class="cmp-cross">✗</span> 7 Ingredients</div>
+      </div>
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-fmp" role="cell"><span class="cmp-check">✓</span> Push or Drip</div>
+        <div class="cmp-cell cmp-cat" role="cell">DELIVERY</div>
+        <div class="cmp-cell cmp-myers" role="cell"><span class="cmp-cross">✗</span> IV Drip – Slower Absorption</div>
+      </div>
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-fmp" role="cell"><span class="cmp-check">✓</span> Instant Energy Boost</div>
+        <div class="cmp-cell cmp-cat" role="cell">RESULTS</div>
+        <div class="cmp-cell cmp-myers" role="cell"><span class="cmp-cross">✗</span> Standard Energy Boost</div>
+      </div>
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-fmp" role="cell"><span class="cmp-check">✓</span> Lasts 9–11 Days</div>
+        <div class="cmp-cell cmp-cat" role="cell">LASTS</div>
+        <div class="cmp-cell cmp-myers" role="cell"><span class="cmp-cross">✗</span> Lasts 2–3 Days</div>
+      </div>
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-fmp" role="cell"><span class="cmp-check">✓</span> Clients In and Out</div>
+        <div class="cmp-cell cmp-cat" role="cell">DURATION</div>
+        <div class="cmp-cell cmp-myers" role="cell"><span class="cmp-cross">✗</span> Client at Station for an Hour or More</div>
+      </div>
+
+    </div>
   </div>
 
   <div class="dr-section">
