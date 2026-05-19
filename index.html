@@ -964,6 +964,29 @@
       display: block;
     }
 
+    /* Desktop: image + table = one full viewport */
+    @media (min-width: 641px) {
+      .compare-page {
+        height: 100svh;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .syringe-strip {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .syringe-strip img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+      }
+      .cmp-wrap {
+        flex-shrink: 0;
+      }
+    }
+
     /* ── DR. BRADLEY MORRIS ── */
     .dr-section {
       background: #0d1b2e;
