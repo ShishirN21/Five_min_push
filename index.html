@@ -891,369 +891,46 @@
        HERO — full-width image background
   ═══════════════════════════════════ -->
   <!-- ═══════════════════════════════════
-       COMPARISON HERO
+       HERO
   ═══════════════════════════════════ -->
-  <style>
-    /* ── RESET OLD HERO STYLES ── */
-    #hero {
-      position: static !important;
-      min-height: unset !important;
-      display: block !important;
-      align-items: unset !important;
-      justify-content: unset !important;
-      text-align: unset !important;
-      background: #0d1b2e !important;
-      overflow: visible !important;
-      padding: 0 !important;
-    }
-    #hero::before { display: none !important; }
-
-    /* ── PULSE BANNER ── */
-    @keyframes pulse-glow {
-      0%,100% { box-shadow: 0 0 18px rgba(192,21,42,.8), 0 0 40px rgba(192,21,42,.4); }
-      50%      { box-shadow: 0 0 36px rgba(192,21,42,1),  0 0 80px rgba(192,21,42,.7), 0 0 120px rgba(192,21,42,.3); }
-    }
-    @keyframes text-pulse {
-      0%,100% { text-shadow: 0 0 8px rgba(255,255,255,.4); }
-      50%      { text-shadow: 0 0 20px rgba(255,255,255,.9), 0 0 40px rgba(255,200,200,.5); }
-    }
-    .pulse-banner {
-      background: #c0152a;
-      text-align: center;
-      padding: 18px 24px;
-      animation: pulse-glow 2s ease-in-out infinite;
-      position: relative; z-index: 2;
-    }
-    .pulse-banner h2 {
-      font-size: clamp(1.4rem, 4vw, 2.4rem);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      animation: text-pulse 2s ease-in-out infinite;
-      margin: 0;
-    }
-
-    /* ── COMPARISON HERO WRAPPER ── */
-    .ch-grid {
-      display: grid;
-      grid-template-columns: 1fr 64px 1fr;
-      background: #f2f2f4;
-      width: 100%;
-    }
-
-    /* LEFT — Five Minute Push */
-    .ch-left {
-      background: #0d1b2e;
-      color: #fff;
-      padding: 36px 32px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .ch-left::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: url('product-1.png') center/cover no-repeat;
-      opacity: .08;
-      pointer-events: none;
-    }
-    .ch-brand { position: relative; z-index: 1; }
-    .ch-brand h2 {
-      font-size: clamp(1.3rem, 2.8vw, 2rem);
-      font-weight: 900; letter-spacing: .05em;
-      text-transform: uppercase; color: #fff;
-      line-height: 1.1; margin-bottom: 4px;
-    }
-    .ch-brand .ch-sub-green {
-      font-size: .72rem; font-weight: 800; letter-spacing: 2px;
-      color: #81a33a; text-transform: uppercase;
-      border-bottom: 2px solid #81a33a;
-      display: inline-block; padding-bottom: 2px; margin-bottom: 20px;
-    }
-    .ch-features { position: relative; z-index: 1; list-style: none; padding: 0; margin: 0; }
-    .ch-features li {
-      display: flex; align-items: center; gap: 12px;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      font-size: .8rem; font-weight: 700; letter-spacing: .06em;
-      text-transform: uppercase; color: #fff;
-    }
-    .ch-features li:last-child { border-bottom: none; }
-    .ch-icon {
-      width: 38px; height: 38px; flex-shrink: 0;
-      border: 2px solid #81a33a;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      background: rgba(129,163,58,.12);
-    }
-
-    /* CENTER — > badge */
-    .ch-center {
-      background: #f2f2f4;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .ch-gt {
-      width: 52px; height: 52px;
-      background: #0d1b2e;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 1.5rem; font-weight: 900;
-      box-shadow: 0 4px 16px rgba(0,0,0,.3);
-    }
-
-    /* RIGHT — Myers */
-    .ch-right {
-      background: #e8e8ec;
-      color: #333;
-      padding: 36px 32px 32px;
-    }
-    .ch-right h2 {
-      font-size: clamp(1.3rem, 2.8vw, 2rem);
-      font-weight: 900; letter-spacing: .05em;
-      text-transform: uppercase; color: #333;
-      line-height: 1.1; margin-bottom: 4px;
-    }
-    .ch-sub-gray {
-      font-size: .72rem; font-weight: 700; letter-spacing: 2px;
-      color: #777; text-transform: uppercase;
-      border-bottom: 2px solid #aaa;
-      display: inline-block; padding-bottom: 2px; margin-bottom: 20px;
-    }
-    .ch-right .ch-features li { color: #444; border-bottom-color: rgba(0,0,0,.08); }
-    .ch-right .ch-icon {
-      border-color: #999; background: rgba(0,0,0,.05);
-    }
-    .ch-myers-badge {
-      background: #aaa; border-radius: 8px;
-      padding: 10px 16px; text-align: center;
-      margin-bottom: 18px; font-size: .85rem; font-weight: 700; color: #555;
-    }
-    .ch-myers-badge strong { display: block; font-size: 1.6rem; color: #333; }
-
-    /* COMPARISON TABLE */
-    .ch-table {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-    }
-    .ch-row {
-      display: contents;
-    }
-    .ch-row > div {
-      padding: 10px 20px;
-      font-size: .8rem;
-      display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .ch-row-left  > div:first-child  { background: #3a5c18; color: #fff; font-weight: 600; }
-    .ch-row-left  > div:nth-child(2) { background: #1a2a1a; color: #ccc; font-weight: 800; letter-spacing: 1px; font-size: .7rem; text-transform: uppercase; justify-content: center; }
-    .ch-row-left  > div:last-child   { background: #2a2a2e; color: #aaa; }
-    .ch-check { color: #81a33a; font-size: 1rem; flex-shrink: 0; }
-    .ch-cross  { color: #c0152a; font-size: 1rem; flex-shrink: 0; }
-
-    /* FOOTER */
-    .ch-footer {
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      background: #f2f2f4;
-      border-top: 2px solid #ddd;
-    }
-    .ch-footer-left, .ch-footer-right {
-      padding: 18px 28px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .ch-footer-divider { background: #ccc; }
-    .ch-footer-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .ch-footer-text { font-size: .78rem; line-height: 1.5; color: #333; }
-    .ch-footer-text strong { display: block; font-size: .85rem; color: #111; }
-    .ch-footer-text .green { color: #81a33a; font-weight: 800; }
-
-    /* CTA row */
-    .ch-cta {
-      background: #0d1b2e;
-      text-align: center; padding: 24px 20px;
-    }
-    .ch-cta a {
-      display: inline-block;
-      background: #c0152a; color: #fff;
-      padding: 13px 36px; border-radius: 8px;
-      font-size: 1rem; font-weight: 800; letter-spacing: .04em;
-      text-transform: uppercase;
-      transition: background .2s;
-      text-decoration: none;
-    }
-    .ch-cta a:hover { background: #a01020; }
-    .ch-cta p { color: #7a9ab5; font-size: .82rem; margin-top: 10px; }
-
-    /* Mobile */
-    @media (max-width: 700px) {
-      .ch-grid { grid-template-columns: 1fr; }
-      .ch-center { padding: 12px; }
-      .ch-gt { width: 40px; height: 40px; font-size: 1.1rem; }
-      .ch-table > .ch-row > div { padding: 8px 10px; font-size: .72rem; }
-      .ch-footer { grid-template-columns: 1fr; }
-      .ch-footer-divider { display: none; }
-    }
-
-    /* ── DR. BRADLEY MORRIS SECTION ── */
-    .dr-section {
-      background: #0d1b2e;
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      padding: 56px 8%;
-      width: 100%;
-    }
-    .dr-photo {
-      flex-shrink: 0;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #81a33a;
-      background: #1a2d44;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      line-height: 1;
-    }
-    .dr-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .dr-info {
-      flex: 1;
-      color: #fff;
-    }
-    .dr-eyebrow {
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #81a33a;
-      margin-bottom: 8px;
-    }
-    .dr-name {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: -.5px;
-      margin-bottom: 16px;
-    }
-    .dr-bio {
-      font-size: 1rem;
-      color: rgba(255,255,255,.75);
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 24px;
-    }
-    .dr-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .dr-email,
-    .dr-clinical {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .88rem;
-      font-weight: 600;
-      padding: 9px 20px;
-      border-radius: 50px;
-      transition: all .2s;
-    }
-    .dr-email {
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.85);
-      border: 1px solid rgba(255,255,255,.2);
-    }
-    .dr-email:hover {
-      background: rgba(255,255,255,.14);
-      color: #fff;
-    }
-    .dr-clinical {
-      background: #81a33a;
-      color: #fff;
-    }
-    .dr-clinical:hover {
-      background: #6a8a2d;
-    }
-    .dr-logos {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .dr-logos img {
-      opacity: .9;
-      transition: opacity .2s;
-    }
-    .dr-logos img:hover { opacity: 1; }
-
-    /* Dr. Morris — mobile */
-    @media (max-width: 640px) {
-      .dr-section {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 40px 6%;
-        gap: 24px;
-      }
-      .dr-photo {
-        width: 120px;
-        height: 120px;
-        font-size: 3.5rem;
-      }
-      .dr-contact {
-        justify-content: center;
-      }
-      .dr-logos {
-        justify-content: center;
-      }
-    }
-  </style>
-
   <section id="hero">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow"><span class="dot"></span> Patented Formulation</div>
+      <h1 class="hero-h1">
+        Energy &amp; Immunity.<br/>
+        In Just 5 Minutes.
+      </h1>
+      <p class="hero-sub">
+        Five Minute Push delivers a clinically formulated vitamin B complex directly into the bloodstream — boosting energy, supporting immunity, and saving clients nearly an hour every visit.
+      </p>
 
-    <!-- PULSING RED BANNER -->
-    <div class="pulse-banner">
-      <h2>Shorter Visits. &nbsp;More Clients.</h2>
-    </div>
-
-    <!-- HERO IMAGE -->
-    <div style="width:100%;line-height:0;">
-      <img src="syringe-vs-drip.png" alt="Five Minute Push beats Myers Cocktail"
-           style="width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center top;display:block;" />
-    </div>
-
-    <!-- DR. BRADLEY MORRIS -->
-    <div class="dr-section">
-      <div class="dr-photo">👨‍⚕️</div>
-      <div class="dr-info">
-        <div class="dr-eyebrow">Medical Director &amp; Clinical Lead</div>
-        <h2 class="dr-name">Dr. Bradley Morris</h2>
-        <p class="dr-bio">With decades of clinical experience in IV therapy and integrative medicine, Dr. Morris developed the Five Minute Push formula to deliver maximum nutrient absorption in minimum time — transforming how clinics serve patients without sacrificing outcomes.</p>
-        <div class="dr-contact">
-          <a href="mailto:drbmorris@gmail.com" class="dr-email">✉ drbmorris@gmail.com</a>
-          <a href="clinical-overview.html" class="dr-clinical">Read Clinical Overview →</a>
+      <div class="promo-boxes">
+        <div class="promo-box">
+          <div class="pb-top">Delivery time</div>
+          <div class="pb-main">⚡ 5–8 MINUTE<br/>TREATMENT</div>
+          <div class="pb-code">vs. 45–60 min traditional IV</div>
         </div>
-        <div class="dr-logos">
-          <img src="integravita-logo.png" alt="IntegraVita Wellness" style="height:48px;width:auto;" />
+        <div class="promo-box">
+          <div class="pb-top">Results per treatment</div>
+          <div class="pb-main">🔋 6–9 DAYS<br/>ENERGY BOOST</div>
+          <div class="pb-code">Per single IV push session</div>
+        </div>
+        <div class="promo-box">
+          <div class="pb-top">Regulatory status</div>
+          <div class="pb-main">✅ FDA-ACCEPTED<br/>FORMULA</div>
+          <div class="pb-code">Patented · All-Natural</div>
         </div>
       </div>
-    </div>
 
-    <!-- SIGN UP CTA -->
-    <div class="ch-cta">
-      <a href="#contact">Sign Up — Add Five Minute Push to Your Clinic</a>
-      <p>Takes less than 2 minutes · No commitment required</p>
+      <div class="hero-buttons">
+        <a href="#contact"      class="btn-hero-primary">Sign Up</a>
+        <a href="#how-it-works" class="btn-hero-outline">See How It Works</a>
+      </div>
     </div>
-
+    <div class="hero-how" id="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════
