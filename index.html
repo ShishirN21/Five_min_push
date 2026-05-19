@@ -204,12 +204,14 @@
     /* ── HERO ── */
     #hero {
       position: relative;
-      height: 100svh; height: 100vh; /* fallback */
+      height: 100svh; height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
       background: url('product-1.png') center center / cover no-repeat;
       overflow: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
     #hero::before {
       content: '';
@@ -229,40 +231,18 @@
     .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--brand-green); border-radius: 50%; animation: blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-    /* ── HERO GLOW ANIMATIONS ── */
+    /* ── HERO GLOW ANIMATIONS (GPU-composited via filter) ── */
     @keyframes hero-glow {
-      0%,100% {
-        text-shadow:
-          0 0 10px rgba(255,255,255,.5),
-          0 0 30px rgba(100,220,255,.4),
-          0 0 60px rgba(80,180,255,.25);
-      }
-      50% {
-        text-shadow:
-          0 0 20px rgba(255,255,255,.95),
-          0 0 50px rgba(100,220,255,.8),
-          0 0 100px rgba(80,180,255,.6),
-          0 0 140px rgba(60,140,255,.3);
-      }
+      0%,100% { filter: drop-shadow(0 0 6px rgba(100,200,255,.35)); }
+      50%      { filter: drop-shadow(0 0 18px rgba(100,200,255,.85)); }
     }
     @keyframes accent-glow {
-      0%,100% {
-        text-shadow:
-          0 0 8px rgba(129,163,58,.6),
-          0 0 24px rgba(129,163,58,.4);
-        color: #a8d44a;
-      }
-      50% {
-        text-shadow:
-          0 0 16px rgba(129,163,58,1),
-          0 0 40px rgba(129,163,58,.8),
-          0 0 70px rgba(180,230,80,.4);
-        color: #c8f060;
-      }
+      0%,100% { filter: drop-shadow(0 0 5px rgba(129,163,58,.5));  opacity: .92; }
+      50%      { filter: drop-shadow(0 0 14px rgba(129,163,58,.95)); opacity: 1; }
     }
     @keyframes badge-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(129,163,58,.5); }
-      50%      { box-shadow: 0 0 0 8px rgba(129,163,58,0); }
+      0%,100% { box-shadow: 0 0 0 0 rgba(129,163,58,.45); }
+      60%      { box-shadow: 0 0 0 7px rgba(129,163,58,0); }
     }
 
     .hero-h1 {
@@ -270,12 +250,16 @@
       font-weight: 900; line-height: 1.1;
       color: #fff; letter-spacing: -1px;
       margin-bottom: 12px;
+      will-change: filter;
+      transform: translateZ(0);
       animation: hero-glow 2.8s ease-in-out infinite;
     }
     .hero-h1 .accent {
       color: #a8d44a;
-      animation: accent-glow 2.8s ease-in-out infinite;
       display: inline-block;
+      will-change: filter, opacity;
+      transform: translateZ(0);
+      animation: accent-glow 2.8s ease-in-out infinite;
     }
     .hero-badge {
       display: inline-block;
@@ -289,6 +273,8 @@
       padding: 5px 16px;
       border-radius: 50px;
       margin-bottom: 14px;
+      will-change: box-shadow, filter;
+      transform: translateZ(0);
       animation: badge-pulse 2.4s ease-in-out infinite, accent-glow 2.8s ease-in-out infinite;
     }
     .hero-sub {
@@ -305,8 +291,7 @@
     .promo-box {
       border: 1.5px solid rgba(255,255,255,.35);
       border-radius: 6px; padding: 12px 10px;
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,.35);
       cursor: pointer; transition: background .2s, border-color .2s;
     }
     .promo-box:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.55); }
