@@ -2098,7 +2098,8 @@
         fb.textContent = '';
 
         try {
-          const res = await fetch('/api/contact', {
+          const API = window.location.hostname === 'localhost' ? '' : 'https://dn14ylxd.up.railway.app';
+          const res = await fetch(API + '/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstName, lastName, clinicName, phone, email, q1, q2, q3, q4 })
