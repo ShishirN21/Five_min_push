@@ -736,8 +736,8 @@
     .cf-back:hover { border-color: var(--brand-blue); color: var(--brand-blue); background: #fafbfb; }
     .cf-next, .cf-send { flex: 1; min-width: 140px; margin-top: 0; }
     .cf-send { display: none; }
-    .cf-quiz[data-step="4"] .cf-next { display: none; }
-    .cf-quiz[data-step="4"] .cf-send { display: block; }
+    .cf-quiz[data-step="5"] .cf-next { display: none; }
+    .cf-quiz[data-step="5"] .cf-send { display: block; }
 
     /* ── DISCLAIMER BAR ── */
     .disclaimer-bar {
@@ -1791,7 +1791,7 @@
 
       <form class="contact-form cf-quiz reveal from-scale" id="contact-form" data-step="1" novalidate>
         <div class="cf-progress" aria-hidden="true"><span class="cf-progress-fill" id="cf-progress-fill"></span></div>
-        <p class="cf-step-meta" id="cf-step-meta">Question <span id="cf-step-num">1</span> of 4</p>
+        <p class="cf-step-meta" id="cf-step-meta">Question <span id="cf-step-num">1</span> of 5</p>
 
         <div class="cf-step" data-step="1">
           <h3 class="cf-q-title">How long did the treatment take?</h3>
@@ -1825,6 +1825,17 @@
         </div>
 
         <div class="cf-step" data-step="4" hidden>
+          <h3 class="cf-q-title">Would you offer Five Minute Push to your clients in the future?</h3>
+          <p class="cf-q-hint">Your honest answer helps us serve clinics better.</p>
+          <div class="cf-opts" role="radiogroup" aria-label="Future offering">
+            <label class="cf-opt"><input type="radio" name="cf-q4" value="Yes, definitely!" required /><span>🚀 Yes, definitely!</span></label>
+            <label class="cf-opt"><input type="radio" name="cf-q4" value="Probably yes" /><span>👍 Probably yes</span></label>
+            <label class="cf-opt"><input type="radio" name="cf-q4" value="Need more information" /><span>🤔 Need more information</span></label>
+            <label class="cf-opt"><input type="radio" name="cf-q4" value="Not at this time" /><span>⏸️ Not at this time</span></label>
+          </div>
+        </div>
+
+        <div class="cf-step" data-step="5" hidden>
           <h3 class="cf-q-title">Almost done — where do we send your free vials?</h3>
           <p class="cf-q-hint">We’ll reach out within 1–2 business days to confirm your claim.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
@@ -2035,7 +2046,7 @@
       }
 
       function validateStep(n) {
-        if (n <= 3) {
+        if (n <= 4) {
           const nm = `cf-q${n}`;
           if (!form.querySelector(`input[name="${nm}"]:checked`)) {
             fb.className = 'cf-feedback error';
@@ -2043,7 +2054,7 @@
             return false;
           }
         }
-        if (n === 4) {
+        if (n === 5) {
           const firstName = (document.getElementById('cf-first-name')?.value || '').trim();
           const lastName  = (document.getElementById('cf-last-name')?.value  || '').trim();
           const clinic    = (document.getElementById('cf-clinic')?.value      || '').trim();
@@ -2070,15 +2081,15 @@
 
       form.addEventListener('submit', async e => {
         e.preventDefault();
-        if (step !== 4) return;
-        if (!validateStep(4)) return;
+        if (step !== 5) return;
+        if (!validateStep(5)) return;
 
         const firstName = document.getElementById('cf-first-name').value.trim();
         const lastName  = document.getElementById('cf-last-name').value.trim();
         const clinicName = document.getElementById('cf-clinic').value.trim();
         const phone     = document.getElementById('cf-phone').value.trim();
         const email     = document.getElementById('cf-email').value.trim();
-        const q1 = selectedRadio('cf-q1'), q2 = selectedRadio('cf-q2'), q3 = selectedRadio('cf-q3');
+        const q1 = selectedRadio('cf-q1'), q2 = selectedRadio('cf-q2'), q3 = selectedRadio('cf-q3'), q4 = selectedRadio('cf-q4');
 
         sub.disabled = true;
         nextBtn.disabled = true;
@@ -2090,7 +2101,7 @@
           const res = await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstName, lastName, clinicName, phone, email, q1, q2, q3 })
+            body: JSON.stringify({ firstName, lastName, clinicName, phone, email, q1, q2, q3, q4 })
           });
           if (res.ok) {
             fb.className = 'cf-feedback success';

@@ -21,6 +21,7 @@ const contactRules = [
   body('q1').optional().trim().isLength({ max: 100 }),
   body('q2').optional().trim().isLength({ max: 100 }),
   body('q3').optional().trim().isLength({ max: 100 }),
+  body('q4').optional().trim().isLength({ max: 100 }),
 ];
 
 /* ── POST /api/contact ─────────────────────────────────────────── */
@@ -31,17 +32,17 @@ router.post('/', contactRules, async (req, res, next) => {
       return res.status(422).json({ errors: errors.array().map(e => e.msg) });
     }
 
-    const { firstName, lastName, clinicName, phone, email, q1, q2, q3 } = req.body;
+    const { firstName, lastName, clinicName, phone, email, q1, q2, q3, q4 } = req.body;
     const id = uuidv4();
 
     db.prepare(`
-      INSERT INTO contact_submissions (id, first_name, last_name, clinic_name, phone, email, q1, q2, q3)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(id, firstName, lastName, clinicName, phone, email, q1 || '', q2 || '', q3 || '');
+      INSERT INTO contact_submissions (id, first_name, last_name, clinic_name, phone, email, q1, q2, q3, q4)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(id, firstName, lastName, clinicName, phone, email, q1 || '', q2 || '', q3 || '', q4 || '');
 
     // Fire emails — don't let a mail failure block the 201 response
     Promise.all([
-      sendLeadNotification({ firstName, lastName, clinicName, phone, email, q1, q2, q3 }),
+      sendLeadNotification({ firstName, lastName, clinicName, phone, email, q1, q2, q3, q4 }),
       sendClientConfirmation({ firstName, email }),
     ]).catch(err => console.error('[mailer]', err.message));
 

@@ -16,7 +16,7 @@ const FROM = `Five Minute Push <${process.env.SMTP_USER}>`;
 const NOTIFY_TO = 'info@fiveminutepush.com';
 
 /* Notification email → info@fiveminutepush.com */
-async function sendLeadNotification({ firstName, lastName, clinicName, phone, email, q1, q2, q3 }) {
+async function sendLeadNotification({ firstName, lastName, clinicName, phone, email, q1, q2, q3, q4 }) {
   await transporter.sendMail({
     from: FROM,
     to: NOTIFY_TO,
@@ -40,6 +40,7 @@ async function sendLeadNotification({ firstName, lastName, clinicName, phone, em
           <tr style="background:#f7f7f7;"><td style="padding:10px 12px;color:#555;border-radius:4px;">How long did it take?</td><td style="padding:10px 12px;font-weight:600;">${q1 || '—'}</td></tr>
           <tr><td style="padding:10px 12px;color:#555;">Were clients excited?</td><td style="padding:10px 12px;font-weight:600;">${q2 || '—'}</td></tr>
           <tr style="background:#f7f7f7;"><td style="padding:10px 12px;color:#555;border-radius:4px;">Was it easy to use?</td><td style="padding:10px 12px;font-weight:600;">${q3 || '—'}</td></tr>
+          <tr><td style="padding:10px 12px;color:#555;">Would you offer it in future?</td><td style="padding:10px 12px;font-weight:600;">${q4 || '—'}</td></tr>
         </table>
 
         <hr style="border:none;border-top:1px solid #eee;margin:20px 0;" />

@@ -105,6 +105,7 @@ const ready = (async () => {
       q1          TEXT DEFAULT '',
       q2          TEXT DEFAULT '',
       q3          TEXT DEFAULT '',
+      q4          TEXT DEFAULT '',
       created_at  TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
@@ -118,6 +119,7 @@ const ready = (async () => {
   if (!cols.includes('q1'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q1          TEXT DEFAULT ''`).run();
   if (!cols.includes('q2'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q2          TEXT DEFAULT ''`).run();
   if (!cols.includes('q3'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q3          TEXT DEFAULT ''`).run();
+  if (!cols.includes('q4'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q4          TEXT DEFAULT ''`).run();
 
   return _db;
 })();
