@@ -96,18 +96,28 @@ const ready = (async () => {
     );
 
     CREATE TABLE IF NOT EXISTS contact_submissions (
-      id         TEXT PRIMARY KEY,
-      first_name TEXT NOT NULL DEFAULT '',
-      last_name  TEXT NOT NULL DEFAULT '',
-      email      TEXT NOT NULL,
-      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      id          TEXT PRIMARY KEY,
+      first_name  TEXT NOT NULL DEFAULT '',
+      last_name   TEXT NOT NULL DEFAULT '',
+      clinic_name TEXT NOT NULL DEFAULT '',
+      phone       TEXT NOT NULL DEFAULT '',
+      email       TEXT NOT NULL,
+      q1          TEXT DEFAULT '',
+      q2          TEXT DEFAULT '',
+      q3          TEXT DEFAULT '',
+      created_at  TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
 
-  /* ── Migrate existing DB: add first_name/last_name if missing ── */
+  /* ── Migrate existing DB: add any missing columns ── */
   const cols = _db.prepare(`PRAGMA table_info(contact_submissions)`).all().map(r => r.name);
-  if (!cols.includes('first_name')) _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN first_name TEXT NOT NULL DEFAULT ''`).run();
-  if (!cols.includes('last_name'))  _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN last_name  TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('first_name'))  _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN first_name  TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('last_name'))   _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN last_name   TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('clinic_name')) _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN clinic_name TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('phone'))       _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN phone       TEXT NOT NULL DEFAULT ''`).run();
+  if (!cols.includes('q1'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q1          TEXT DEFAULT ''`).run();
+  if (!cols.includes('q2'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q2          TEXT DEFAULT ''`).run();
+  if (!cols.includes('q3'))          _db.prepare(`ALTER TABLE contact_submissions ADD COLUMN q3          TEXT DEFAULT ''`).run();
 
   return _db;
 })();
