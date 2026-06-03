@@ -2098,7 +2098,7 @@
         fb.textContent = '';
 
         try {
-          const API = window.location.hostname === 'localhost' ? '' : 'https://dn14ylxd.up.railway.app';
+          const API = window.location.hostname === 'localhost' ? '' : 'https://api.fiveminutepush.com';
           const res = await fetch(API + '/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
